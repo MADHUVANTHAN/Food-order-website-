@@ -52,9 +52,10 @@
         //echo" botton clicked";
         
         //get the data from form
-        $full_name = $_POST['full_name'];
-        $username = $_POST['username'];
-        $password = md5($_POST['password']); //password encrypted with md5
+        $full_name =mysqli_real_escape_string($conn,$_POST['full_name']) ;
+        $username =mysqli_real_escape_string($conn,$_POST['username']) ;
+        $raw_password=md5($_POST['password']);
+        $password =mysqli_real_escape_string($conn,$raw_password) ; //password encrypted with md5
 
         //sql quary to save the data into database
         $sql="INSERT INTO tbl_admin SET

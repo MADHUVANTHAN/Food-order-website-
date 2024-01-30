@@ -178,7 +178,8 @@
                     {
                         //image is available
                         //rename the image
-                        $ext=end(explode('.',$image_name));   //get the extention of the image 
+                        $explode=explode('.',$image_name);
+                        $ext=end($explode);   //get the extention of the image 
                         $image_name="Food-Name".rand(0000,9999).'.'.$ext;  //this will be rername image
 
                         //get the source path and destination path
@@ -221,10 +222,14 @@
                             }
                         }
                     }
+                    else
+                    {
+                        $image_name=$current_image; //default image when image is not available
+                    }
                 } 
                 else
                 {
-                    $image_name=$current_image;
+                    $image_name=$current_image;  //default image when botton is not clicked 
                 }
 
                 ///4.upload the food in database
@@ -233,7 +238,7 @@
                     description='$description',
                     price='$price',
                     image_name='$image_name',
-                    category_id='$category',
+                    category_id='$category_id',
                     featured='$featured',
                     active='$active'
                     WHERE id=$id
